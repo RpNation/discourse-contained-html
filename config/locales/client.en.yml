@@ -1,0 +1,9 @@
+en:
+  js:
+    contained_html:
+      title: "Contained post layout"
+      label: "Custom layout"
+      source: "View HTML source"
+      loading: "Preparing layout…"
+      unavailable: "This layout could not be displayed. Its source is available below."
+      limit: "Only three custom layouts can be displayed per post."

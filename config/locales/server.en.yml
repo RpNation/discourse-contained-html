@@ -1,0 +1,3 @@
+en:
+  site_settings:
+    contained_html_enabled: "Enable the experimental, script-free contained HTML renderer for rpn-html code blocks. Local evaluation only; not approved for production."

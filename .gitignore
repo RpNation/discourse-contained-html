@@ -1,0 +1,10 @@
+node_modules/
+.bundle/
+.eslintcache
+coverage/
+tmp/
+Gemfile.lock
+
+# Third-party forum artwork used only for the local comparison.
+/fixtures/sock-pile/assets/
+/fixtures/sock-pile/manifest.json
