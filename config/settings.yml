@@ -1,0 +1,4 @@
+plugins:
+  contained_html_enabled:
+    default: false
+    client: true
