@@ -83,6 +83,27 @@ The authoritative allowlists and limits are in
 
 ## Work needed before a BBCode replacement
 
+### Composer mode
+
+The HTML toolbar toggle replaces the composer's input component with a plain
+source editor. It does not introduce a third value into Discourse's stored
+Markdown/rich-text preference. Every input change is wrapped before reaching
+the native reply model, preview or draft serialization. The wrapper uses a
+delimiter longer than every backtick run in the source.
+
+Only empty posts or a single complete layout can enter HTML mode. Mixed content
+remains in Markdown. Native quote/formatting insertions switch to Markdown and
+insert after the closing fence; file uploads require Markdown. The integration
+uses the toolbar API, editor-mode transformer and current editor-component
+contract. A narrow editor-class extension identifies the HTML textarea as a
+source editor so the native preview remains available. These integrations need
+regression testing when Discourse changes its composer.
+
+Markdown is forced only during initial setup of an existing standalone layout.
+After that, the native Markdown/RTE switch remains available. Editor setup is
+registered once, and outgoing input callbacks cannot reclaim the composer while
+the next editor loads. The native action still manages saved editor preferences.
+
 ### Stored blocks and a render route
 
 Separating layouts into a table linked to their posts is a sound production

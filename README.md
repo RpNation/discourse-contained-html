@@ -6,27 +6,44 @@ review before use by untrusted users.
 
 ## Authoring
 
-Use Discourse's Markdown editor and an `rpn-html` code fence:
+Click **HTML** beside the composer's Markdown/rich-text switch on an empty post.
+Write or paste HTML and CSS directly; the preview uses the same contained renderer
+as the saved post. You do not need to type a wrapper or code fence.
 
-````markdown
-Ordinary Markdown before the design.
-
-```rpn-html
+```html
 <!-- layout-height: 600 -->
 <style>
-.card { padding: 24px; background: #193c35; color: #ffffff; }
+  .card {
+    padding: 24px;
+    background: #193c35;
+    color: #ffffff;
+  }
 </style>
 <section class="card">
   <h2>Character name</h2>
   <p>A short introduction.</p>
-  <details><summary>History</summary><p>The story so far…</p></details>
+  <details>
+    <summary>History</summary>
+    <p>The story so far…</p>
+  </details>
 </section>
 ```
 
-Ordinary Markdown after the design.
-````
+An existing post containing one standalone layout opens in HTML mode when edited.
+Click **Markdown** to return to the normal source editor. This does not change
+your saved Markdown/rich-text preference. Native quote and formatting insertions
+return to Markdown and place their content after the layout. Switch to Markdown
+to upload files; HTML mode blocks file paste/drop and cannot start during uploads.
+The native Markdown/rich-text switch remains available in HTML mode. Choosing
+rich text returns to Discourse's editor, where the layout is an escaped code block.
 
-The fence keeps the source escaped through Discourse's native cooker. It is an
+Posts combining ordinary text with layouts, or multiple layouts, stay in Markdown
+mode. Their existing `rpn-html` fences continue to work. The toggle is disabled
+for these posts so it cannot replace or reinterpret surrounding content.
+
+The plugin maintains an escaped `rpn-html` fence internally for previews, drafts,
+saving and editing, choosing a longer delimiter when the source contains
+backticks. The fence keeps the source escaped through Discourse's native cooker. It is an
 authoring delimiter; the iframe sandbox provides the isolation boundary. The
 source remains readable when the plugin is disabled or unavailable.
 
@@ -34,6 +51,10 @@ Frames default to 480 px tall and scroll internally. An optional leading
 `<!-- layout-height: 600 -->` comment requests a height from 200 to 1600 px.
 Up to three blocks are rendered per decorated post or preview, with a maximum
 source size of 256 KiB per block.
+
+Unstyled layouts use the forum's background and light/dark text defaults.
+Explicit colors in a layout take precedence. Palette changes apply without
+reloading the frame or resetting its open disclosures and scroll position.
 
 ## What is supported
 
@@ -76,9 +97,10 @@ git clone https://github.com/RpNation/discourse-contained-html.git
 ```
 
 Restart Discourse, then enable the `contained_html_enabled` site setting for
-local evaluation. Use the Markdown editor for the example above. Rich-editor
-round trips and full accessibility, search, email and quote integration still
-need work. This prototype does not convert existing BBCode posts.
+local evaluation, then click **HTML** in an empty composer for the example above.
+HTML layouts use the source editor; visual rich-text editing of their contents
+and full accessibility, search, email and quote integration still need work.
+This prototype does not convert existing BBCode posts.
 
 The optional raster registry is empty in a fresh checkout. Its loader and the
 font loader assume files prepared and reviewed by an administrator: their

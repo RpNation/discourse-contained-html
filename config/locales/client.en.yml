@@ -7,3 +7,13 @@ en:
       loading: "Preparing layout…"
       unavailable: "This layout could not be displayed. Its source is available below."
       limit: "Only three custom layouts can be displayed per post."
+      composer:
+        html: "HTML"
+        markdown: "Markdown"
+        source_label: "HTML source"
+        placeholder: "Write or paste your HTML and CSS here."
+        switch_to_html: "Edit an HTML layout"
+        switch_to_markdown: "Return to Markdown"
+        unavailable: "HTML mode needs an empty post or a post containing one HTML layout."
+        upload_notice: "Switch to Markdown to upload files."
+        upload_in_progress: "Wait for your uploads to finish before switching to HTML."
