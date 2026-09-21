@@ -21,10 +21,16 @@ disabled setting. Raster examples build small synthetic files in temporary
 directories; no external photos, network downloads, database dump, or local
 forum fixture is required. Font examples use the licensed packaged fonts.
 
-Four frontend examples use synthetic layouts to check the empty iframe sandbox,
+Frontend examples use synthetic layouts to check the empty iframe sandbox,
 source-only fallback, `srcdoc` insertion, bounded heights, removed nodes, and
 late responses after a preview is replaced. These run in the standard plugin
 QUnit job; they do not require the local comparison topic or its artwork.
+
+Composer integration examples cover source-mode switching, rich-text preferences,
+native preview and draft serialization, reopening a saved layout, preserving
+mixed content, quote/formatting insertion boundaries, switching drafts, blocked
+file paste/drop, uploads in progress and malicious fence terminators. Source
+helper tests cover exact whitespace round trips and reject ambiguous fences.
 
 ## Browser checks performed locally
 
@@ -47,6 +53,17 @@ passed, but a revised test navigating between posts stalled in desktop WebKit an
 remains incomplete. Mobile emulation is not physical-device Safari/iOS testing.
 These results do not replace independent security review or production testing.
 
+On 2026-09-21, the HTML composer mode passed 24 frontend tests and a Chromium
+browser check of direct source entry, contained live preview, hostile fence
+markers, native post saving, reopening in HTML mode and a 390 px viewport.
+The browser check reported no frontend runtime errors. This mode has not yet
+been checked on physical mobile devices or in Firefox/WebKit.
+
+The frontend tests also cover visible native Markdown/RTE controls and repeated
+mode switches with both saved editor preferences. A separate Chromium check
+confirmed light/dark frame backgrounds, readable unstyled text, unchanged custom
+colors, and palette changes without reloading the document or relaxing its sandbox.
+
 The additional local browser scripts and forum comparison data belong to the
 development workspace and are not part of this repository's CI. CI does not
 claim to run that browser matrix. Before deployment, extend portable browser
@@ -56,9 +73,9 @@ rapid composer updates through the full editor.
 ## Manual smoke check
 
 1. Enable `contained_html_enabled` on a development site.
-2. Paste the README example into a new topic using the Markdown editor.
+2. Open an empty composer, click **HTML**, and paste the README example.
 3. Check the preview and saved post, then edit the source and switch between
-   ordinary Markdown and an `rpn-html` fence.
+   HTML and Markdown modes. Save, reload and edit the post again.
 4. Confirm native disclosures work and all design styles stay inside the frame.
 5. Try author `<script>`, event handlers, remote CSS/image URLs and an oversized
    height hint; verify no script executes, no remote resources load, and frame

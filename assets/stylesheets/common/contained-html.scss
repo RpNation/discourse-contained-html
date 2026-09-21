@@ -20,7 +20,8 @@
     height: 480px;
     max-width: 100%;
     border: 0;
-    background: #fff;
+    background: var(--secondary);
+    color-scheme: var(--scheme-type);
   }
 
   &__status,
@@ -32,4 +33,39 @@
     cursor: pointer;
     font-size: var(--font-down-1);
   }
+}
+
+.contained-html-composer {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+
+  &__label {
+    padding: 0.5em 0.75em;
+    color: var(--primary-medium);
+    font-size: var(--font-down-1);
+  }
+
+  &__input {
+    font-family: var(--d-font-family--monospace);
+    tab-size: 2;
+  }
+
+  &__notice {
+    margin: 0;
+    padding: 0.5em 0.75em;
+    color: var(--primary);
+    background: var(--highlight-bg);
+  }
+}
+
+.contained-html-mode {
+  font-size: var(--font-down-1);
+  font-weight: bold;
+}
+
+.d-editor-button-bar:has(.contained-html-mode--active)
+  > :not(.contained-html-mode, .composer-toggle-switch) {
+  display: none;
 }
